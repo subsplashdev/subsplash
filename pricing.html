@@ -523,7 +523,7 @@ input:checked + .toggle:before {
 	
 	/* Media Queries */
 	
-	@media only screen and (min-width: 50px) and (max-width: 500px) {
+	@media only screen and (min-width: 50px) and (max-width: 550px) {
 #calc-holder {
     display: block;
 }
@@ -542,6 +542,11 @@ input:checked + .toggle:before {
 #calc-holder > div {
     min-width: 95% !important;
 }
+}
+	
+	@media only screen and (min-width: 50px) and (max-width: 420px)
+#calc-holder > div {
+    min-width: 85% !important;
 }
     
 </style>
