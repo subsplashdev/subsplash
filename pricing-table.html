@@ -1,0 +1,782 @@
+<!-- BODY CONTENT SECTION START -->
+        
+    <div pardot-region="ERC" pardot-region-type="html" align="center" style="text-align: center;" id="calc-holder">
+
+        
+        <div id="calc-form">
+            <div id="calc-donations" class="calc-section">
+                <div class="calc-heading">How much are your average monthly&nbsp;donations?</div>
+                <div id="calc-donation-value">$40,000</div>
+                <input type="range" id="calc-donation-slider" name="calc-donation-slider" min="5000" step="5000" max="150000" value="40000" oninput="updateDonation(this.value)"><div class="calc-range-labels"><div>$5,000</div><div>$150,000</div></div>
+            </div>
+            <div id="calc-dcf" class="calc-section">
+                <div class="calc-heading" style="display:inline-block;">Donors cover processing fees?</div>
+                <label class="switch" style="margin-left: 15px;">
+                    <input type="checkbox" id="calc-dcf-checkbox" checked=""><span class="toggle"></span>
+                </label>
+                <div id="calc-dcf-percent">
+                    <div class="calc-subheading">% of donations with donor-covered fees—average&nbsp;is 30%:</div>
+                    <div id="calc-dcf-value">30%</div>
+                    <input type="range" id="calc-dcf-slider" name="calc-dcf-slider" min="0" step="5" max="100" value="30" oninput="updateCoveredFees(this.value)"><div class="calc-range-labels"><div>0%</div><div>100%</div></div>
+                </div>
+            </div>
+            <div id="calc-fees" class="calc-section last">
+                <div class="calc-heading">Subsplash Giving fees: $0/month</div>
+                <div class="calc-subheading">Unlike many online giving solutions, Subsplash Giving has no monthly subscription costs or hidden fees.</div>
+            </div>
+        </div>
+        <div id="calc-results">
+            <div id="calc-grow-curve" style="left: -816.66px;"></div>
+            <div class="calc-title">Your savings!</div>
+            <div id="calc-savings-holder">
+                <div class="calc-savings-col">
+                    <div class="results-heading">Your effective rate<span class="calc-info" data-tooltip="The &quot;effective rate&quot; is what your organization actually pays per transaction after all fees are included. The rate shown here assumes a subscription to a Subsplash Giving + Platform package.">ⓘ</span></div>
+                    <div id="calc-rate-value" class="calc-savings-value">1.34%</div>
+                </div>
+                <div class="calc-savings-col" style="margin-bottom: 20px !important;">
+                    <div class="results-heading">Savings with Subsplash Giving<span class="calc-info" data-tooltip="Compared to the average online giving solution processing rate of around 2.9%.">ⓘ</span></div>
+                    <div id="calc-savings-value" class="calc-savings-value">$561</div><span>/year</span>
+                </div>
+                <div class="calc-savings-col">
+                    <div class="results-heading">GrowCurve™ savings<span class="calc-info" data-tooltip="With our exclusive GrowCurve™ feature, your rates will automatically and continuously fall as your giving increases-to as low as 1.9% for cards and 0.5% for ACH.">ⓘ</span></div>
+                    <div id="calc-growcurve-value" class="calc-savings-value">$19</div><span>/year</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+		<!-- BODY CONTENT SECTION END -->
+    
+
+
+<style>
+  
+  @font-face {
+  font-family: 'Social Icons Font';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390f77bdcbca0_social-icon-font.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653906066dcbc9a_social-icon-font.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653900cefdcbc9b_social-icon-font.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390c3b4dcbc9d_social-icon-font.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390818edcbc91_social-icon-font.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Line Square Icons';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390d4dfdcbca2_line-square-icons.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390a8aadcbca6_line-square-icons.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390d3ffdcbca7_line-square-icons.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390cf04dcbcc2_line-square-icons.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653907c00dcbca1_line-square-icons.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Filled Icons';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390fb24dcbccc_filled-icon-font.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653904457dcbce3_filled-icon-font.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390260fdcbcc0_filled-icon-font.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390a50cdcbca4_filled-icon-font.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653906f8cdcbcd7_filled-icon-font.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Line Rounded Icons';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a6539090f6dcbcc7_line-rounded-icons.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390d4fbdcbc9e_line-rounded-icons.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a65390da52dcbc99_line-rounded-icons.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a6539031fddcbc9c_line-rounded-icons.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d5cb7a653906828dcbcbf_line-rounded-icons.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83f509010776985230_Proxima%20Nova%20Bold.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83f853ac781bb41d9f_Proxima%20Nova%20Bold.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8339e4d9d641dfccc3_Proxima%20Nova%20Bold.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83b377cf3ad0e7ed27_Proxima%20Nova%20Bold.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a836af67fb7a470c4ce_Proxima%20Nova%20Bold.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a845a7f1906608f8991_Proxima%20Nova%20Bold.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83ab312d8bc422c39c_Proxima%20Nova%20ExtraBold.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84e3dbfbc1c4503a6a_Proxima%20Nova%20ExtraBold.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a846b2a008814c98e3e_Proxima%20Nova%20ExtraBold.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83c8695076be56a415_Proxima%20Nova%20ExtraBold.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83f5852edfae598248_Proxima%20Nova%20ExtraBold.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8483e9cd3f0fac7cb0_Proxima%20Nova%20ExtraBold.svg') format('svg');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84503196201dff5669_Proxima%20Nova%20Light.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a840f3d7d519ffbcf9a_Proxima%20Nova%20Light.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a842b9be97db3860991_Proxima%20Nova%20Light.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a846af67f28b770c4cf_Proxima%20Nova%20Light.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8421cdaba855c3811f_Proxima%20Nova%20Light.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8426e33b559891ba41_Proxima%20Nova%20Light.svg') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a839c4bb544f4995738_Proxima%20Nova%20Black.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a832b9be9085586098e_Proxima%20Nova%20Black.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a832b9be96481860990_Proxima%20Nova%20Black.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a83c7170d2cf13b38c7_Proxima%20Nova%20Black.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a832b9be911b886098f_Proxima%20Nova%20Black.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84ab312d377422c3a0_Proxima%20Nova%20Black.svg') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84413ca45c54ee6b1f_Proxima%20Nova%20SemiBold%20Italic.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a848e051a4bd334ca26_Proxima%20Nova%20SemiBold%20Italic.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a846702ab47be8f6261_Proxima%20Nova%20SemiBold%20Italic.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a845a7f19aed78f898d_Proxima%20Nova%20SemiBold%20Italic.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84c86950af7b56a420_Proxima%20Nova%20SemiBold%20Italic.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a85840b2b4ba2f3a3bd_Proxima%20Nova%20SemiBold%20Italic.svg') format('svg');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84a395730167b68b70_Proxima%20Nova%20SemiBold.woff2') format('woff2'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84e2e1b709ec7cae12_Proxima%20Nova%20SemiBold.eot') format('embedded-opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84f5852e0ea659824c_Proxima%20Nova%20SemiBold.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8421cdab308ec38124_Proxima%20Nova%20SemiBold.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84139237028ebd4574_Proxima%20Nova%20SemiBold.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84a39573279db68b75_Proxima%20Nova%20SemiBold.svg') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Header Icons Font';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d9e2acb66c4ad38090693_fontello.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Navbar Icons';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/62d5b9e42b92469fccfc51f2_fontello.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84f5852e353859824d_Proxima-Nova-Regular.woff') format('woff'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8473dbe0bbe0fd330f_Proxima%20Nova%20Regular.ttf') format('truetype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a84b377cf25d2e7ed28_Proxima-Nova-Regular.otf') format('opentype'), url('https://uploads-ssl.webflow.com/627d5cb7a65390b3f8dcbc63/627d6a8426e33b735391ba42_Proxima-Nova-Regular.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+  
+  /* Media Queries Calculate */
+
+@media only screen and (min-width: 50px) and (max-width: 1215px) {
+.grid-2-columns.pricing-calculate {
+    grid-template-columns: 1fr;
+}
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 100px) and (max-width: 380px) {
+.mask {
+    max-width: 320px;
+}
+}
+
+#calc-grow-curve {
+    content: "";
+    position: absolute;
+    width: 1948px;
+    height: 1677px;
+    border: 380px solid rgba(255,255,255,.2);
+    border-radius: 5000px;
+    top: -793px;
+    left: -1120px;
+    box-shadow: inset 0 0 20px rgb(0 0 0 / 20%);
+    transition: left 0.3s ease-out;
+}
+    
+    /* Style CSS */
+#calc-holder {
+    font-family: 'proxima-nova', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#calc-holder > div {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 370px !important;
+}
+
+.calc-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.calc-heading {
+    font-weight: 700 !important;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-donation-value, #calc-dcf-value {
+    color: #4f64ff;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700 !important;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+}
+
+.calc-range-labels {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #54585A;
+    font-size: 15px;
+    max-width: 300px;
+    font-family: 'Proxima Nova';
+}
+
+.calc-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.calc-heading {
+    font-weight: 400;
+    font-size: 21px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #7E7F82;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+#calc-dcf-percent {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    height: auto;
+    max-height: 200px;
+}
+
+.calc-subheading {
+    font-weight: 300;
+    line-height: 145%;
+    font-size: 16px;
+    color: #54585A;
+    margin-bottom: 16px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-donation-value, #calc-dcf-value {
+    color: #4f64ff;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+}
+
+.calc-range-labels {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    color: #7E7F82;
+    font-size: 16px;
+    max-width: 300px;
+}
+
+.calc-section.last {
+    border-bottom: none;
+}
+
+.calc-section {
+    padding: 20px 0;
+}
+
+.calc-heading {
+    font-weight: 400;
+    font-size: 21px;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 24px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-subheading {
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #54585A;
+    margin-bottom: 16px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-holder > div {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+#calc-results {
+    background-color: #4f64ff;
+    border-radius: 0px 20px 20px 0px;
+    padding: 20px;
+    color: #FFF;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-title {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1.5em;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-savings-col {
+    margin-bottom: 30px;
+}
+
+.results-heading {
+    font-weight: 600 !important;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+#calc-results div {
+    color: #FFF;
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-col span {
+    font-size: 15px;
+    line-height: 145%;
+    font-family: 'Proxima Nova';
+    color: #fff;
+}
+
+.calc-savings-value {
+    font-size: 42px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+    font-weight: 700;
+}
+
+.results-heading {
+    font-weight: 400;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-value {
+    font-size: 60px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+}
+
+.calc-savings-col {
+    margin-bottom: 30px;
+}
+
+.calc-range-labels {
+color: #54585A !important;
+}
+
+.results-heading {
+    font-weight: 400;
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 25px;
+    line-height: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    font-family: 'Proxima Nova';
+}
+
+.calc-info {
+    margin-left: 10px;
+    vertical-align: middle;
+    cursor: help;
+    position: relative;
+}
+
+.calc-savings-value {
+    font-size: 60px;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-family: 'Proxima Nova';
+}
+
+input[type=range] {
+    height: 6px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    position: relative;
+    max-width: 300px;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+}
+
+#calc-form {
+border: 1.07px solid #E8E8E8;
+border-right: 0px !important;
+border-radius: 20px 0px 0px 20px;
+}
+
+/* Toggle and Switcher */
+
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #DDD;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 25px;
+  background: #4f64ff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -9px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  border: none;
+}
+
+input[type=range] {
+  height: 6px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  max-width: 300px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #DDD;
+  border-radius: 5px;
+  border: 0px solid #000000;
+}
+
+#calc-dcf-percent.collapsed{
+  max-height: 0px;
+}
+
+#calc-fees > div.calc-heading {
+color: #4F64FF;
+}
+
+/* SWITCH STYLES */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  vertical-align: middle;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #7E7F82;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle {
+  background-color: #4f64ff;
+}
+
+input:focus + .toggle {
+  box-shadow: 0 0 1px #4f64ff;
+}
+
+input:checked + .toggle:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+  }
+  
+.calc-info:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #000;
+    color: #FFF;
+    width: 200px;
+    padding: 20px;
+    left: 50%;
+    transform: translateX(-70%);
+    border-radius: 8px;
+    top: 20px;
+    font-size: 15px;
+    z-index: 10;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 50px) and (max-width: 990px) {
+#calc-holder {
+    display: contents !important;
+    justify-content: center !important;
+}
+
+#calc-form {
+    border-right: 1px solid #E8E8E8 !important;
+    border-radius: 20px 20px 0px 0px !important;
+}
+
+#calc-results {
+    border-radius: 0px 0px 20px 20px !important;
+}
+
+#calc-holder > div {
+    min-width: 100% !important;
+}
+
+#calc-grow-curve {
+width: 1729px;
+height: 1549px;
+}
+}
+    
+</style>
+
+<script>
+let donations = 40000; // average monthly donations
+let dcf = .3; // % of donors covering fees
+let effectiveRate;
+let givingSavings;
+let gcSavings;
+
+// assumptions
+const cardDonations = .7;
+const achDonations = .3;
+const avgComp = .0275;
+const avgGift = 250;
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // listen for checkbox
+  document.querySelector("#calc-dcf-checkbox").addEventListener('change', function() {
+    if(this.checked){console.log('checked');
+      document.querySelector('#calc-dcf-percent').classList.remove('collapsed');
+      dcf = document.querySelector('#calc-dcf-slider').value/100;
+    }else{console.log('unchecked');
+      document.querySelector('#calc-dcf-percent').classList.add('collapsed');
+      dcf = 0;
+    }
+    updateResults();
+  });
+  // set default results
+  updateResults();
+});
+
+function updateDonation(val)
+{
+    // update html
+    document.getElementById('calc-donation-value').innerHTML = formatMoney(val);
+    // update value
+    donations = val;
+    updateResults();
+}
+
+function updateCoveredFees(val)
+{
+    // update html
+    document.getElementById('calc-dcf-value').innerHTML = val+'%';
+    // update value
+    dcf = val/100;
+    updateResults();
+}
+
+function updateResults()
+{
+  console.log('------------------');
+  console.log('dcf = '+dcf);
+  // calc ACH rate
+  let achRate = .01;
+  achVolume = (donations * (1 - (dcf * .99999))) * achDonations;
+  if(achVolume >= 10000){
+    switch(true){
+      case (achVolume < 20000): achRate = .0095; break; 
+      case (achVolume < 30000): achRate = .009; break;
+      case (achVolume < 40000): achRate = .0085; break;
+      case (achVolume < 50000): achRate = .008; break;
+      case (achVolume < 60000): achRate = .0075; break;
+      case (achVolume < 70000): achRate = .007; break;
+      case (achVolume < 80000): achRate = .0065; break;
+      case (achVolume < 90000): achRate = .006; break;
+      case (achVolume < 100000): achRate = .0055; break;
+      case (achVolume >= 100000): achRate = .005; break;
+    }
+  }console.log('achRate = '+achRate);
+  // calc total ACH cost
+  let achTotal = ( achVolume * achRate ) * (1 - dcf);console.log('achTotal = '+achTotal);
+  // calc card rate
+  let cardRate = .023;
+  cardVolume = (donations * (1 - (dcf * .99999))) * cardDonations;
+  if(cardVolume >= 10000){
+    switch(true){
+      case (cardVolume < 20000): cardRate = .022; break; 
+      case (cardVolume < 30000): cardRate = .0218; break;
+      case (cardVolume < 40000): cardRate = .0216; break;
+      case (cardVolume < 50000): cardRate = .0214; break;
+      case (cardVolume < 60000): cardRate = .0212; break;
+      case (cardVolume < 70000): cardRate = .021; break;
+      case (cardVolume < 80000): cardRate = .0208; break;
+      case (cardVolume < 90000): cardRate = .0206; break;
+      case (cardVolume < 100000): cardRate = .0204; break;
+      case (cardVolume < 110000): cardRate = .02; break;
+      case (cardVolume < 120000): cardRate = .0198; break;
+      case (cardVolume < 130000): cardRate = .0196; break;
+      case (cardVolume < 140000): cardRate = .0194; break;
+      case (cardVolume >= 140000): cardRate = .019; break;
+    }
+  }
+  // calc total card cost
+  console.log('cardRate = ' + cardRate);
+  let cardTransactions = cardVolume / avgGift;console.log('cardTransactions = '+cardTransactions);
+  let cardTotal = (( cardVolume * cardRate ) + (cardTransactions * .3)) * (1 - dcf);console.log('cardTotal = '+cardTotal);
+  // calc total cost
+  let total = achTotal + cardTotal;console.log('total = '+total);
+  // calc effective rate
+  effectiveRate = total / (donations * (1 - (dcf * .99999)));console.log('effectiveRate = '+effectiveRate);
+  // calc giving savings
+  givingSavings = ( effectiveRate * donations ) - ( avgComp * donations );
+  // calc grow curve savings
+  gcSavings = (( .01 - achRate ) * achVolume ) + (( .023 - cardRate) * cardVolume );
+  
+  // update html
+  document.getElementById('calc-rate-value').innerHTML = (Math.floor(effectiveRate*10000)/100)+'%';
+  document.getElementById('calc-savings-value').innerHTML = formatMoney(givingSavings*-1);
+  document.getElementById('calc-growcurve-value').innerHTML = formatMoney(gcSavings);
+
+  // update curve position
+  //document.getElementById('calc-grow-curve').style.left = (0-Math.floor(1400 / (effectiveRate * 100)))+'px';
+  document.getElementById('calc-grow-curve').style.left = 0-(800+(gcSavings*.85))+'px';
+}
+
+function formatMoney(val)
+{
+  val = Math.floor(val);
+   return '$'+val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
